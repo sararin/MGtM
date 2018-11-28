@@ -1,0 +1,71 @@
+operations -> computer calculations
+              arithmetic operations -> add/sub etc
+              logic operations -> and/or/not
+
+components of modern computer -> control unit -> reads instructions from memory and interprets them
+                                 arithmetic unit -> actually does stuff
+                                 input dev -> like keyboard
+                                 output dev -> like monitor
+                                 memory sys
+
+ALU -> takes two inputs, command input, returns output and status output
+       A,B -> inputs
+       + -> command input
+       A+B -> output
+       1 -> status output(in this case indicating sucess)
+
+Information -> everything that you can percieve
+               noise -> unimportant information
+               signal -> important
+               you want to maximalise signal-to-noise ratio
+               info on pc is discreete, irl information is often continuous
+               so since digital is discrete, you lose some of the info
+
+Why discrete -> cause there are only two states
+                low voltage and high voltage
+                high volt -> close to supply voltage
+                low volt -> close to the ground(zero)
+
+Counting in binary -> remember bit is one digit
+                      by shifting you multiply or divide by two
+                      you also have to remember about carry-over values which happen when you try to make number bigger than 1
+                      for example 1 + 1 = 10(the carry happens)
+                      The substraction though is different
+                      Two's compliment -> instead of A-B you perform ( (not A) + 1 ) + B
+                      Fixed point -> dec point stays in place
+                      Floating point -> it's shifted with information how much(the *10^x bit)
+                                        in PC we use base 2 so for example 1.69 * 2^n
+
+Logic operators -> in integrated circuts
+                   generally logic circut takes some input and spits output
+                   AND -> =) takes A B and returns true if A AND B are true
+                   OR -> => takes A B and returns true if A OR B are true
+                   NOT -> >. takes A and returns the oposite
+                   NAND -> =). takes A B and returns true if A AND B arent true
+                   NOR -> =>. takes A B and returns true if A OR B arent true
+                   XOR -> |=> takes A B and returns true if either A OR B are true
+                   De Morgans theorem -> NAND is the same as using OR on each inputs complement
+                                         NOR is the same as using AND and each inputs complement
+                                         NAND -> =). same as ..=> as in negating the inputs and ORing
+                                         NOR -> =>. same as ..=) same as negating the inputs and ANDing
+
+Half adder! -> uses AND =) and XOR |=> gates
+               XOR is used for lower digit
+               while AND decides whenever or not set carry to 1
+               A XOR B = value of A+B
+               A AND B = if carry exist(for 1 AND 1 it does)
+               Full adder -> (A B)half-adder(S1 Cout1) 
+                             (S1 Cin)half-adder(S2 Cout2)
+                             (Cout1 Cout2)OR(Cout3)
+                             final is (S2 Cout3)
+               Ripple carry adder -> 1 half-adder and n full-adders
+                                     (A0 B0)Half-adder(S0 Cout0)
+                                     (A1 B1 Cout0)Full-adder(S1 Cout1)
+                                     ...
+                                     (An Bn Cout(n-1))Full-adder(Sn Coutn)
+                                     (Sn Cout)                                     
+                                     they are slow as fuck because of the carry tho
+               Carry look-ahead adder -> determines the direction during add or sub
+                                         circuit is bigger but a lot quicker
+
+Registers ->
