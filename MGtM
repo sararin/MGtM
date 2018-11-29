@@ -68,4 +68,41 @@ Half adder! -> uses AND =) and XOR |=> gates
                Carry look-ahead adder -> determines the direction during add or sub
                                          circuit is bigger but a lot quicker
 
-Registers ->
+Registers -> memory storage inside of CPU(very short term)
+             used to perform calculations before they are stored elsewere
+Memory -> important, you can't store everything in registers after all
+          so you have dedicated circuts which store that(latch),
+          they have to have some trigger condition to swap 1 and 0
+          flip-flop -> basic component of memory circuit
+                       they can freeily change states based on input
+                       accepts two inputs(most of the time) and two ouputs Q and ~Q
+                       RS flip-flop -> R(eset) S(et)
+                                       set S to 1 makes Q 1
+                                       set R to 1 and no matter the state of S, Q will be 0
+                                       it remembers which it got last S or R and sets Q accordingly
+                                       (S, output of 2st NAND)(NAND)(Q)
+                                       (R, output of 1st NAND)(NAND)(~Q)
+                                       you can replace NAND with NOR
+                                       (S, R) -> (Q ~Q)
+                                       (1, 1) -> (no change) (0, 1) -> (1, 0 set) (1, 0) -> (0, 1 reset) (0, 0) -> (1, 1 illegal)
+                       D flip-flop -> it reads state of input D when input C changes from low state to high state
+                                      Clock -> stands for C most of the time
+                                               most of them raising edge(0 changing state to 1) is called action signal
+                                               if it goes from low to high it's called rising edge
+                                               if it goes from high to low it's called falling edge
+                       T flip-flop -> when input T does the raising edge thing(changes state from low to high)
+                                      output Q changes state
+                                      toggling -> what T stands in this flip-flop
+                                                  flipping between 1 and 0
+                                      counter circuit -> made out of chaining serval T flip-flops together
+                                                         second T changes state when first T creates a raising edge
+                                                         so it's two times slower, third one is 4 times slower 4th one is 8 times slower
+                                                         01 -> 0011 -> 00001111 -> 0000000011111111
+                                                         asynchronous counter -> this is example of such counter cause flip-flops aren't connected to one clock
+                                                         synchronous counter -> every flip-flop gets trigger signal from one clock, they all turn on the same time
+
+HDL -> hardware description language, defines operations on the circuit
+CAD -> computer aided design, we don't draw them by hand but design them in our computers which speed up the process
+       it was bootstrapping of sorts, we designed simple programs first
+
+CPU architecture
