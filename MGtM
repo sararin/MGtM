@@ -125,3 +125,46 @@ Bus -> path that transmits data
                              mem capacity and bus width -> if our address bus width is n bits,
                                                            then we have 2^n addresses
                                                            our memory capacity is (2^n)/8 KB
+R/W and I/O -> control signals
+               R/W -> stands for read/write
+                      read -> extract data(load)
+                      write -> save data(store)
+                      R/W -> hardware perspective, electrical operations on memory
+                      L/S -> software perspective, all about registers and it's relation to memory
+                      CPU deals with R/W instruction signals, and talks to memory using buses
+                      Bus -> address bus gives addres
+                             control bus gives instruction
+                             data bus fetches the data
+               I/O -> stands for input/output
+                      I/O control signals!
+                      I/O port -> connects input device and CPU directly
+Instructions -> instruction resides at some address, and contains operands(which store some address) and opcode(which defines operation)
+                opcodes -> short for operation code
+                           operates on operands
+                           operands -> most often they are some addresses in memory
+                so entire thing looks like
+                (data at address 30) (opcode) (data at address 31)
+                registers -> you can't execute instruction directly
+                             you have to use a register to store data first
+                             two kinds of registers: accumulator -> used for calculations
+                                                     general purpose -> everything else
+                so since you need to use registers, in reality addition looks like this
+                save data from address X at accumulator
+                save data from addrtess Y to general purpose register
+                accumulator contains result of addition of those two
+                instruction register -> stores instruction for program read from memory
+
+Instruction cycle -> program counter(PC) -> hold address of next instruction to be executed
+                                            because of jumps and branches, it doesn't have to count from 1 to n
+                     cycle -> after you execute an operation, address of next instruction from PC
+                              is transfered to address register and forwarded to memory
+                              then, memory sends instruction located at that address back to CPU
+                              it's stored in instruction register, decoded and interpreted
+                              then results are stored in memory
+                     instruction decoder -> breaks down instruction from memory into form CPU can understand
+
+Virtual memory -> OS decides how programs interact with physical memory.
+                  it also only exposes it through virtual memory(this is what programs interact with)
+                  hardware mapping virtual memoery to physical memory is Memory Management Unit
+
+Memory ->
