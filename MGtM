@@ -242,9 +242,51 @@ Instruction types -> arithmetic calc -> self explanatory
                                                circular shifts -> exactly what's on the tin
                                                                   001011 >> 3 = 011001
 
-                     data transfer instructions ->
-                     I/O instructions, branching instructions, conditionals
-                                                                                          
+                     data transfer instructions -> deal with transfer of data
+                                                   from register to egister
+                                                   from CPU to memory
+                     I/O instructions -> CPU exchaning data with external devices
+                     branching instructions -> jumping from one address to other
+                                               can be conditioal or not
+                                               branch instructions -> brach to address not far from execution site
+                                               jump instructions -> jump to addresses farther away
+                                               skip instructions -> can skip(or not) next instruction to be executed
+                     conditionals -> first you have to evaluate the condition
+                                     for example compare two integers
+                                     status flag -> called status bit
+                                                    is set if condition is true
+                                                    or if operation was sucessful
+                                                    can be either 1 or 0
+                                                    in reality many kinds of flag exist, sign flags, carry flags and so on
+                                                    they are stored in status registers(8/16bit combinations of lots of flags)
+                                     now after you have a status flag
+                                     you can branch if flag is positive
 
 GPU and CPU -> share exclusive I/O port
                display and CPU aren't directly connected
+
+Operand types -> target data/address of an operation
+                 (opcode is type of instruction)
+                 (they also work on accumulators most of the time)
+                 opcode source-operand destination-operand
+                 types -> a value -> add2 operand which adds two
+                          address reference -> absolute addressing -> data is at n address
+                                                                      also called effective address or direct addressing
+                                                                      some CPUs have size of opcode smaller than address space
+                                                                      operand can't contain entire address space this way
+                                               relative addressing -> effective address is sum of operand value and program counter
+                                                                      address in relation to program counter
+                                                                      called xx-register relative addresses
+                                                                      often used in jump instructions
+                                               indirect addressing -> address n contains reference to data at address x
+                                                                      nice when you want to access address with very long number
+                                                                      because no. of bits reserved for operand is limited
+                          address modification -> using value stored in modification register to modify number or address
+                                                  you add value of modification register to base value, then you may store it in another register
+                                                  in program counter
+                                                  in immediate value
+                                                  index register -> one of most commonly used modification register
+                                                  base register -> contains value we want to use as base
+                                                  useful for extracting particular data from a set
+                                                  because you can specify the offset in index register
+                                                  and start of data set in base register
