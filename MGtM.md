@@ -167,4 +167,84 @@ Virtual memory -> OS decides how programs interact with physical memory.
                   it also only exposes it through virtual memory(this is what programs interact with)
                   hardware mapping virtual memoery to physical memory is Memory Management Unit
 
-Memory ->
+Memory -> two flavors
+          primary memory -> cleaned after turning computer off
+                            can be read from directly
+          secondary memory -> persistent, survives boots
+                              CPU can't read directly from it
+                              CPU sends control signals to HDD interface
+                              which translates it to something HDD can understand
+          quickness of access is inversly proportional to it's storage size
+          registers are the fastest, then cache mem, primary mem, disk cache, secondary mem
+          cache -> temporaily stores frequently used data
+          address space -> all memory outside of CPU
+                           but controlled by CPU
+                           divided into two parts, RAM -> (random access memory)
+                                                          non-persistent
+                                                   ROM -> (read only memory)
+                                                          persistents between boots
+                                                          BIOS -> stored on ROM, boots system up
+                                                   I/O spaces -> exists as well, but isn't always part of address space
+                                                                 I/O port exists within this space
+
+Interrupts -> while one thing happen, you start doing other one
+              for example, it responds to external input when crunching numbers
+              no interups -> CPU has to check perodically if something had happen
+              interrups -> CPU gets a notification
+              after the interrupt, cpu easily returns to previous calculations
+              stack -> that thing, last in last out
+                       you can push stuff on it and pop
+                       you can overflow it
+                       stack pointer -> points at last address stack worked with
+              when interrupt happens, data(accumulator, status registers, program counter)
+              is saved on stack, it can have several interrupts in it
+              interrupt priority -> what happens when
+                                    interrupt mask -> allow to ignore the interrupt
+                                                      non-maskable interrups -> NMI, cant ignore these, for example:
+                                                      reset -> interrupt you can't ignore
+                                                               even if having a mask
+                                                               sets state to initial one
+              timer interrups -> issue an interrupt when they reach zero after counting down
+                                 allow to execute program at regularly timed intervals
+                                 general timer interrupt block looks like this:
+                                 block -> master clock -(prescaler, freq divider which lower the freq by select register)
+                                       -> timer basis clock -(decreasing timer, latch signal is inital value register(from where count))
+                                       -> timer interrupt
+                                 Timer interrupt control -> two inputs. RESET and INIT(chose a value)
+              Reset signals -> set programs/internal circuits to initial state
+                               for example set program counter to zero
+                               they are issued every time you start a computer
+                               reset is tricky though, after turn on, power fluctuates a bit
+                               it has to stabilise, so we keep a reset until it does
+
+Instruction types -> arithmetic calc -> self explanatory
+                     logic instructions -> already covered(AND,OR,XOR,NOT)
+                     bit shift instructions -> shift values together
+                                               logical shift -> 01100100 >> 2 = 00011001
+                                                                quick multiplication and division by multiples of 2
+                                               but a catch!
+                                               sign bit -> leftmost bit which tells you if num is positive or negative
+                                                           011 is +3
+                                                           101 is -3(why, because of two's compliment rule)
+                                                           this way 0 is exactly 000
+                                                                   -1 is         111
+                                                                   -4 is         100
+                                               logical shift -> no sign bit
+                                               arithmetic shift -> has sign bit
+                                                                   when you do logic shift you just shit
+                                                                   in arithmetic shift you pay attention to sign bit
+                                                                   if it's 0 you fill up with zeros 01100100 >> 2 = 00011001
+                                                                   if it's 1 you fill up with ones  11100100 >> 2 = 11111001
+                                               overflow -> when numbers overclock, might happen when you left shift too much
+                                                           0011 << 2 = 1100
+                                                           number turns negative
+                                                           also when it occurs, the overflow flag is supposed to be set
+                                               circular shifts -> exactly what's on the tin
+                                                                  001011 >> 3 = 011001
+
+                     data transfer instructions ->
+                     I/O instructions, branching instructions, conditionals
+                                                                                          
+
+GPU and CPU -> share exclusive I/O port
+               display and CPU aren't directly connected
