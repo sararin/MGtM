@@ -105,4 +105,23 @@ HDL -> hardware description language, defines operations on the circuit
 CAD -> computer aided design, we don't draw them by hand but design them in our computers which speed up the process
        it was bootstrapping of sorts, we designed simple programs first
 
-CPU architecture
+Address -> a memory location
+           memory -> place where data and programs are stored
+                     good practice, segment data and programs
+                     CPU has full control over address space
+           why addresses are good thing? CPU can point to address and read data from that point in memory
+Bus -> path that transmits data
+       actually caled address bus
+       CPU -(address bus)-> memory
+       CPU <-(data bus)- memory
+       CPU -(internal data bus(MUX which change flow of data))-> inside CPU
+       CPU -(external bus USB)- memory
+       bundled signal pathways -> what buses really are
+                                  each signal pathway codes only one bit
+                                  so you have to combine many to send bigger amounts of data than 1bit
+                                  for example, if buses are 4bit wide
+                                  4bit inputs enter ALU and 4bit output exits it
+       Address space size -> how large your memory is, determined by address bus width
+                             mem capacity and bus width -> if our address bus width is n bits,
+                                                           then we have 2^n addresses
+                                                           our memory capacity is (2^n)/8 KB
