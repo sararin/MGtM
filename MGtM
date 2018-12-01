@@ -290,3 +290,29 @@ Operand types -> target data/address of an operation
                                                   useful for extracting particular data from a set
                                                   because you can specify the offset in index register
                                                   and start of data set in base register
+
+transmission -> serial -> one bit at time
+                parallel -> at the same time
+
+Registers -> accumulator -> stores calculation results from ALU
+             instruction register/decoder -> store and decode program instructions
+             status registers -> collection of flags taking value 1 or 0
+                                 often lumped together
+             modification registers -> base registers, index registers
+                                       serve as starting point in certain addressing modes
+                                       base -> holds basis for address calculations
+                                       index -> holds fixed val that modify operand immediate values to form effective address
+             temporary registers -> save temporary data 
+             program counters -> holds address of next instruction to be executed
+             stack pointer -> hold last used stack address
+
+Flags -> Z(ero)-flag -> indicates if accumulator equals zero
+                        useful if cpu doesnt have module for comparsions
+         S(ign)-flag -> tells if num is neg or poz
+         C(arry)-flag -> indicates if carry or overflow occured
+                         also set if bitshift operation resulted in overflow
+         Borrow-flag -> indicates if borrow occured during substraction
+         GT flag -> set if outcome is "greater than"
+         LT flag -> set if outcome is "less than"
+         odd flag -> if result is odd number
+         interrupt mask -> set beforehand, determines what type of interrups can occur
